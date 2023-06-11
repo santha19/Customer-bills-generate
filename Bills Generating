@@ -1,0 +1,59 @@
+def add_item(bill):
+    item = input("Enter item name: ")
+    price =float(input("Enter item price: "))
+    bill.append({'item': item, 'price': price})
+    print(f"{item} added to the billing list.")
+
+def remove_item(bill):
+    item = input("Enter item name to remove: ")
+    for i in range(len(bill)):
+        if bill[i]['item'] == item:
+            del bill[i]
+            print(f"{item} removed from the billing list.")
+            return
+    print(f"{item} not found in the billing list.")
+
+def update_item(bill):
+    item = input("Enter item name to update: ")
+    for i in range(len(bill)):
+        if bill[i]['item'] == item:
+            price = float(input("Enter updated item price: "))
+            bill[i]['price'] = price
+            print(f"{item} updated with price {price}.")
+            return
+    print(f"{item} not found in the billing list.")
+
+def billing(bill):
+    total = 0
+    print("Billing Details:")
+    for item in bill:
+        print(f"Item: {item['item']}, Price: {item['price']}")
+        total += item['price']
+    print(f"Total Amount: {total}")
+
+bill = []
+
+while True:
+    print("\n****** Customer Billing System ******")
+    print("1. Add Item")
+    print("2. Remove Item")
+    print("3. Update Item Price")
+    print("4. Generate Bill")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice (1-5): "))
+
+    if choice == 1:
+        add_item(bill)
+    elif choice == 2:
+        remove_item(bill)
+    elif choice == 3:
+        update_item(bill)
+    elif choice == 4:
+        billing(bill)
+    elif choice == 5:
+        break
+    else:
+        print("Invalid choice. Please try again.")
+
+print("Thank you for using the Customer Billing System!")
